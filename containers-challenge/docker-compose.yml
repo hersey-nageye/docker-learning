@@ -1,0 +1,12 @@
+services:
+  web:
+    image: flask-app
+    ports:
+      - "5001:5001"
+    depends_on:
+      - db
+
+  db:
+    image: redis-database
+    ports:
+      - "6379:6379"

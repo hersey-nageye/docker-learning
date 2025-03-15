@@ -1,0 +1,18 @@
+# Use the official Redis image from Docker Hub as the base image
+FROM redis
+
+# Set the working directory inside the container to /usr/local/etc/redis
+# This is where the Redis configuration file will be placed
+WORKDIR /usr/local/etc/redis
+
+# Copy the custom redis.conf file from your local machine to the container's working directory
+# This custom config will override the default Redis configuration
+COPY redis.conf /usr/local/etc/redis/redis.conf
+
+# Expose port 6379 on the container, the default port Redis uses
+# This allows other services (e.g., your Flask app) to connect to Redis on this port
+EXPOSE 6379
+
+# Define the command to run when the container starts
+# In this case, it starts the Redis server with the custom configuration file redis.conf
+CMD [ "redis-server", "/usr/local/etc/redis/redis.conf" ]
