@@ -51,7 +51,8 @@ if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5001)
 ```
 
-Test the Flask app locally by running `python3 flask-app.py` and accessing `http://localhost:5001` in your browser. Check if the `/count` page works as expected.
+Test the Flask app locally by running `python3 flask-app.py` and accessing `http://localhost:5001` in your browser. Check if the `/count` page works as expected. Once the app is tested locally and confirmed to be working, make sure to update the host for the Redis connection in the Flask app from `'localhost'` to `'db'`, as this is the service name defined in your `docker-compose.yml` file.
+
 
 ---
 
