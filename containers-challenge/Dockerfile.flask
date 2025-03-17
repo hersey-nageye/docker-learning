@@ -1,12 +1,24 @@
+# Use the official Python 3 image based on Alpine Linux as a lightweight base image
 FROM python:3-alpine
 
+# Set the working directory inside the container to /usr/src/app
 WORKDIR /usr/src/app
 
+# Copy the requirements.txt file from your local machine to the container
+# This allows us to install Python dependencies in a later step
 COPY requirements.txt ./
+
+# Install the Python dependencies listed in requirements.txt
+# --no-cache-dir flag ensures that pip doesn't store cache files, reducing image size
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Copy the rest of the application files from your local machine to the container
+# This includes the Flask app and any other files in the project
 COPY . .
 
+# Expose port 5001 on the container to allow communication with the Flask app
 EXPOSE 5001
 
+# Define the command to run when the container starts
+# In this case, it starts the Flask app using python and the flask-app.py script
 CMD [ "python", "flask-app.py" ]
